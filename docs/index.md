@@ -3,4 +3,4 @@ provider: ActiveProspect
 name: JSON
 link:
 ---
-JSON is an open-standard format that uses human-readable text to transmit data objects of attribute–value pairs and arrays.
+A format using human-readable text to send data objects of attribute–value pairs and arrays. Accepts JSON, XML, HTML, or text responses.
