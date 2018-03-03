@@ -1,6 +1,6 @@
 {
   "name": "leadconduit-json",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "LeadConduit JSON integration",
   "main": "index.js",
   "scripts": {
