@@ -20,7 +20,7 @@
     </section>
     <footer>
       <button v-on:click="$store.dispatch('cancel')">Cancel</button>
-      <button v-on:click="next" class="primary">{{ (token) ? 'Continue' : 'Skip' }}</button>
+      <button v-on:click="next" class="primary">{{ (credential.username && credential.password) ? 'Continue' : 'Skip' }}</button>
     </footer>
   </div>
 </template>
