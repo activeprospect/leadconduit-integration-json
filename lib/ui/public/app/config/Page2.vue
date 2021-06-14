@@ -34,12 +34,15 @@
     },
     methods: {
       next() {
-        this.$store.dispatch('setResponseOpts', this.opts);
+        this.$store.commit('setResponseOpts', this.opts);
         this.$router.push('/3');
       }
     },
-    components: {
-      Navigation
-    }
+    mounted () {
+      this.opts.outcomePath = this.$store.state.outcomePath;
+      this.opts.outcomeTerm = this.$store.state.outcomeTerm;
+      this.opts.reasonPath = this.$store.state.reasonPath;
+    },
+    components: { Navigation }
   }
 </script>

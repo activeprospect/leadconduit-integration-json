@@ -33,12 +33,10 @@ export default {
   },
   methods: {
     finish() {
-      this.$store.dispatch('setAction', this.action);
+      this.$store.commit('setAction', this.action);
       this.$store.dispatch('finish');
     }
   },
-  components: {
-    Navigation
-  }
+  components: { Navigation }
 }
 </script>

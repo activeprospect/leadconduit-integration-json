@@ -7,9 +7,13 @@
 
       <h5>Data</h5>
       <p>If you have an example JSON body, copy+paste it here.</p>
-      <textarea rows="10" v-model="rawJson" v-bind:class="{ error: error }"></textarea>
-      <p v-if="parsedFields && parsedFields.length">{{parsedFields.length}} field<span v-if="parsedFields.length > 1">s</span> found: {{parsedFields.join(', ')}}</p>
-      <p v-if="error">Error parsing JSON</p>
+      <textarea rows="10" v-model="rawJson" v-bind:class="{ error: error }" style="font-family: monospace;"></textarea>
+      <p v-if="!rawJson">No JSON entered</p>
+
+      <p v-if="parsedFields && parsedFields.length">{{parsedFields.length}} field<span v-if="parsedFields.length > 1">s</span> found:</p>
+      <pre v-if="parsedFields && parsedFields.length">{{parsedFields.join(', ')}}</pre>
+
+      <p v-if="error">Invalid JSON</p>
     </section>
     <Navigation :onNext="next" :disableNext="!url"/>
   </div>
@@ -22,20 +26,14 @@
       return {
         rawJson: undefined,
         error: false,
-        url: '',
-        extraFields: [{
-          value: '',
-          property: ''
-        }]
+        url: ''
       };
-    },
-    components: {
-      Navigation
     },
     methods: {
       next() {
         this.$store.commit('setUrl', this.url);
-        this.$store.commit('setFields', { parsedFields: this.parsedFields, extraFields: this.extraFields });
+        this.$store.commit('setFields', this.parsedFields);
+        this.$store.commit('setJson', this.rawJson);
         this.$router.push('/2');
       }
     },
@@ -53,6 +51,11 @@
           return undefined
         }
       }
-    }
+    },
+    mounted () {
+      this.url = this.$store.state.url;
+      this.rawJson = this.$store.state.rawJson;
+    },
+    components: { Navigation }
   }
 </script>
