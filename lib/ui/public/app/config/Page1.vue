@@ -6,15 +6,10 @@
       <input v-model="url" type="text">
 
       <h5>Data</h5>
-      <textarea rows="5" v-model="rawJson"></textarea>
       <p>If you have an example JSON body, copy+paste it here.</p>
-      <p>If not, you can switch to dot notation field mapping.</p>
-
-      <ul>
-        <li v-for="field in extraFields" :key="field.name">
-          <input v-model="field.value" type="text"> <input v-model="field.property" type="text"> <button v-on:click="addProperty">+</button>
-        </li>
-      </ul>
+      <textarea rows="10" v-model="rawJson" v-bind:class="{ error: error }"></textarea>
+      <p v-if="parsedFields && parsedFields.length">{{parsedFields.length}} field<span v-if="parsedFields.length > 1">s</span> found: {{parsedFields.join(', ')}}</p>
+      <p v-if="error">Error parsing JSON</p>
     </section>
     <Navigation :onNext="next" :disableNext="!url"/>
   </div>
@@ -26,7 +21,7 @@
     data() {
       return {
         rawJson: undefined,
-        errors: false,
+        error: false,
         url: '',
         extraFields: [{
           value: '',
@@ -38,9 +33,6 @@
       Navigation
     },
     methods: {
-      addProperty() {
-        this.extraFields.push({ value: '', property: '' });
-      },
       next() {
         this.$store.commit('setUrl', this.url);
         this.$store.commit('setFields', { parsedFields: this.parsedFields, extraFields: this.extraFields });
@@ -53,11 +45,11 @@
         try {
           let parsed = JSON.parse(this.rawJson);
           parsed = flatten(parsed);
-          this.errors = false;
+          this.error = false;
           return Object.keys(parsed);
         }
         catch (e) {
-          this.errors = true;
+          this.error = true;
           return undefined
         }
       }
