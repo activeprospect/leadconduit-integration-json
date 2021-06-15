@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     next() {
-      if (this.token) {
+      if (this.credential.username && this.credential.password) {
         return this.$store.dispatch('createCredential', this.credential);
       }
       this.$store.state.ui.create({ 'redirect': 'config'});
