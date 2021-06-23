@@ -4,7 +4,11 @@
   "description": "LeadConduit JSON integration",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "fixlint": "eslint . --fix",
+    "lint": "eslint .",
+    "prepublishOnly": "webpack --config node_modules/@activeprospect/integration-dev-dependencies/webpack_config.js",
+    "watch": "webpack --watch --config node_modules/@activeprospect/integration-dev-dependencies/webpack_config.js"
   },
   "repository": {
     "type": "git",
@@ -16,10 +20,18 @@
   },
   "homepage": "https://github.com/activeprospect/leadconduit-integration-json#readme",
   "dependencies": {
-    "leadconduit-custom": "^2.16.0"
+    "@activeprospect/integration-components": "^2.0.0",
+    "bson-objectid": "^2.0.1",
+    "express": "^4.17.1",
+    "flat": "^5.0.2",
+    "leadconduit-custom": "^2.16.0",
+    "leadconduit-integration-ui": "^1.1.4",
+    "leadconduit-sanitize-name": "^1.0.2",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^8.3.0"
+    "@activeprospect/integration-dev-dependencies": "^1.1.3"
   }
 }
