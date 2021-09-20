@@ -21,6 +21,7 @@ jobs:
       run: npm i
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Install Serverless Framework
       run: npm i serverless
@@ -29,11 +30,13 @@ jobs:
       run: npm i -g @activeprospect/rip-cli
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Install rip-runtime
       run: npm i @activeprospect/rip-runtime
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Run rip deploy
       run: rip deploy production
