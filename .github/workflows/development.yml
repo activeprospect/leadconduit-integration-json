@@ -11,11 +11,11 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 14
+    - name: Use Node.js 16
       uses: actions/setup-node@v1
       with:
         always-auth: true
-        node-version: '14.x'
+        node-version: '16.x'
         registry-url: https://registry.npmjs.org
         scope: '@activeprospect'
 
