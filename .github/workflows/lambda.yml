@@ -15,8 +15,8 @@ on:
 
 jobs:
   deploy-development:
-    environment: development
     if: inputs.deploy_to == 'development'
+    environment: development
     uses: ./.github/workflows/lambda-deploy.yml
     with:
       deploy_to: ${{ inputs.deploy_to }}
