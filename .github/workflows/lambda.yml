@@ -17,7 +17,7 @@ jobs:
   deploy-development:
     if: inputs.deploy_to == 'development'
     uses: ./.github/workflows/lambda-deploy.yml
+    environment: development
     with:
       deploy_to: ${{ inputs.deploy_to }}
-    environment: development
     secrets: inherit
