@@ -42,11 +42,11 @@ jobs:
 
     - name: Install rip-cli
       run: npm i -g @activeprospect/rip-cli
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Install rip-runtime
       run: npm i @activeprospect/rip-runtime
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Run rip deploy
       run: rip deploy ${{ inputs.deploy_to }}
