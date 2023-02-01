@@ -1,0 +1,23 @@
+name: Deploy Integration as a Lambda to AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_to:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  deploy-development:
+    if: inputs.deploy_to == 'development'
+    uses: ./.github/workflows/lambda-deploy.yml
+    with:
+      deploy_to: ${{ inputs.deploy_to }}
+    environment: development
+    secrets: inherit
