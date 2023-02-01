@@ -16,8 +16,11 @@ on:
 jobs:
   deploy-development:
     if: inputs.deploy_to == 'development'
-    environment: development
     uses: ./.github/workflows/lambda-deploy.yml
     with:
       deploy_to: ${{ inputs.deploy_to }}
-    secrets: inherit
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID_DEVELOPMENT }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AUTOMATED_RETRIES_AWS_ACCESS_KEY_ID_DEVELOPMENT }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AUTOMATED_RETRIES_AWS_SECRET_ACCESS_KEY_DEVELOPMENT }}

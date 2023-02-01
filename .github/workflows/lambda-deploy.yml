@@ -5,16 +5,16 @@ on:
     inputs:
       deploy_to:
         description: 'Environment to deploy to'
+        type: string
         required: true
-        default: "development"
     secrets:
       NPM_TOKEN:
         required: true
       AWS_ACCOUNT_ID:
         required: true
-      AUTOMATED_RETRIES_AWS_ACCESS_KEY_ID_DEVELOPMENT:
+      AWS_ACCESS_KEY_ID:
         required: true
-      AUTOMATED_RETRIES_AWS_SECRET_ACCESS_KEY_DEVELOPMENT:
+      AWS_SECRET_ACCESS_KEY:
         required: true
 
 jobs:
@@ -53,5 +53,5 @@ jobs:
       env:
         AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
         AWS_REGION: 'us-east-1'
-        AWS_ACCESS_KEY_ID: ${{ secrets.AUTOMATED_RETRIES_AWS_ACCESS_KEY_ID_DEVELOPMENT }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AUTOMATED_RETRIES_AWS_SECRET_ACCESS_KEY_DEVELOPMENT }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
