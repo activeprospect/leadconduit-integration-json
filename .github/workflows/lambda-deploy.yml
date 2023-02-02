@@ -25,33 +25,34 @@ jobs:
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14
-      uses: actions/setup-node@v1
-      with:
-        always-auth: true
-        node-version: '14.x'
-        registry-url: https://registry.npmjs.org
-        scope: '@activeprospect'
+      - run: echo "found this value of 'foo' in the ${{ inputs.deploy_to }} environment ${{ foo }}"
+      - uses: actions/checkout@v3
+      - name: Use Node.js 14
+        uses: actions/setup-node@v3
+        with:
+          always-auth: true
+          node-version: '14.x'
+          registry-url: https://registry.npmjs.org
+          scope: '@activeprospect'
 
-    - name: Install integration dependencies
-      run: npm i
+      - name: Install integration dependencies
+        run: npm i
 
-    - name: Install Serverless Framework
-      run: npm i serverless@2
+      - name: Install Serverless Framework
+        run: npm i serverless@2
 
-    - name: Install rip-cli
-      run: npm i -g @activeprospect/rip-cli
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install rip-cli
+        run: npm i -g @activeprospect/rip-cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Install rip-runtime
-      run: npm i @activeprospect/rip-runtime
+      - name: Install rip-runtime
+        run: npm i @activeprospect/rip-runtime
 
-    - name: Run rip deploy
-      run: rip deploy ${{ inputs.deploy_to }}
-      env:
-        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-        AWS_REGION: 'us-east-1'
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Run rip deploy
+        run: rip deploy ${{ inputs.deploy_to }}
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REGION: 'us-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
