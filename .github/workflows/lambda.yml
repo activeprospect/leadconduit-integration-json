@@ -1,4 +1,4 @@
-name: Deploy Integration as a Lambda to AWS
+name: Deploy Integration Lambda to AWS
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/lambda-deploy.yml
+    uses: activeprospect/leadconduit-integration-custom/.github/workflows/lambda-deploy.yml@master
     with:
       deploy_to: ${{ inputs.deploy_to }}
     secrets: inherit
