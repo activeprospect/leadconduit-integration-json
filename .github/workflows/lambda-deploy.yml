@@ -16,18 +16,15 @@ on:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
-      FOO:
-        required: false
 
 jobs:
   deploy:
-    name: deploy
+    name: Deploy to ${{ inputs.deploy_to }}
     environment: ${{ inputs.deploy_to }}
     runs-on: ubuntu-latest
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-      - run: echo "found this value of 'foo' in the ${{ inputs.deploy_to }} environment ${{ secrets.FOO }}"
       - uses: actions/checkout@v3
       - name: Use Node.js 14
         uses: actions/setup-node@v3
