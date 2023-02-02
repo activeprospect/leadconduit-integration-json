@@ -15,23 +15,7 @@ on:
 
 jobs:
   deploy:
-#    if: inputs.deploy_to == 'development'
     uses: ./.github/workflows/lambda-deploy.yml
     with:
       deploy_to: ${{ inputs.deploy_to }}
     secrets: inherit
-#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-#      AWS_ACCESS_KEY_ID: ${{ secrets.AUTOMATED_RETRIES_AWS_ACCESS_KEY_ID }}
-#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AUTOMATED_RETRIES_AWS_SECRET_ACCESS_KEY_DEVELOPMENT }}
-
-#  deploy-staging:
-#    if: inputs.deploy_to == 'staging'
-#    uses: ./.github/workflows/lambda-deploy.yml
-#    with:
-#      deploy_to: ${{ inputs.deploy_to }}
-#    secrets:
-#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID_STAGING }}
-#      AWS_ACCESS_KEY_ID: ${{ secrets.AUTOMATED_RETRIES_AWS_ACCESS_KEY_ID_STAGING }}
-#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AUTOMATED_RETRIES_AWS_SECRET_ACCESS_KEY_STAGING }}
