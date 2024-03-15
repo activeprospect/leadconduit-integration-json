@@ -1,6 +1,6 @@
 module.exports = {
   outbound: {
-    authenticated_json: require('./lib/authjson'),
+    token_authenticated: require('./lib/authjson'),
     json: require('./lib/json')
   },
   ui: require('./lib/ui')

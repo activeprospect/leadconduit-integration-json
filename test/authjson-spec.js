@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const { requestVariables, validate } = require('../lib/authjson');
 
-describe('Authenticated JSON', function () {
+describe('Token Authenticated', function () {
 
   describe('Request variables', function () {
     it('makes credential_id required', function () {
@@ -18,7 +18,10 @@ describe('Authenticated JSON', function () {
       vars = {
         url: 'https://example.com/deliver',
         credential_id: 'abc123',
-        authentication_url: 'https://example.com/authenticate'
+        authentication_url: 'https://example.com/authenticate',
+        credential: {
+          type: 'token'
+        }
       };
     });
 
@@ -33,7 +36,7 @@ describe('Authenticated JSON', function () {
 
     it('fails when missing credential ID', function () {
       delete vars.credential_id;
-      assert.equal(validate(vars), 'credential ID is required');
+      assert.equal(validate(vars), 'ID of token credential is required');
     });
 
     it('fails when missing auth URL', function () {
