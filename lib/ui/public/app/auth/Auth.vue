@@ -14,13 +14,13 @@
             <label>
               <input type="radio" v-model="credential.type" value="user" id="user"> <b>Username &amp; Password</b> - The server requires a username and password ("Basic" authentication)
             </label>
-            <section v-if="credential.type === 'user'">
+            <section v-if="credential.type === 'user'" style="margin-top: 2px;">
               <ul>
-                <li>
+                <li style="margin-bottom: 2px;">
                   <label>Username</label>
                   <input type="text" v-model="credential.username">
                 </li>
-                <li>
+                <li style="margin-bottom: 2px;">
                   <label>Password</label>
                   <input type="text" v-model="credential.password">
                 </li>
@@ -31,9 +31,9 @@
             <label>
               <input type="radio" v-model="credential.type" value="token" id="token"> <b>Bearer Token</b> - The server uses token-based authentication
             </label>
-            <section v-if="credential.type === 'token'">
+            <section v-if="credential.type === 'token'" style="margin-top: 2px;">
               <ul>
-                <li>
+                <li style="margin-bottom: 2px;">
                   <label>Token</label>
                   <input type="text" v-model="credential.token">
                 </li>
