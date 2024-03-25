@@ -20,7 +20,7 @@ describe('Auth Helpers', function () {
     assert.deepEqual(getTokenAttributes(credential), ['token', 'accessToken', 'aSeeminglyRandomAttribute']);
   });
 
-  it('substitute header tokens', function () {
+  it('substitutes header tokens', function () {
     const headers = {
       Authorization: "Bearer TOKEN",
       "X-Auth-Test-0": "Bearer token",
@@ -35,6 +35,16 @@ describe('Auth Helpers', function () {
     assert.equal(actual["X-Auth-Test-1"], "Bearer tokenizable");
     assert.equal(actual["X-Auth-Test-2"], "Bearer version");
     assert.equal(actual["X-Auth-Test-3"], "What about bar");
+  });
+
+  it('handles absence of credential token-ish values', function () {
+    const headers = {
+      Authorization: "Bearer TOKEN",
+      "X-Auth-Test-0": "Bearer token"
+    };
+
+    const actual = substituteHeaderTokens(headers, {});
+    assert.deepEqual(actual, headers);
   });
 
   it('converts auth config', function () {

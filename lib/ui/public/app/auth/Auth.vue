@@ -43,7 +43,7 @@
         </ul>
       </form>
     </section>
-    <Navigation :onNext="next" :disableNext="(credential.type === 'token' && !credential.token) || (credential.type === 'user' && (!credential.username || !credential.password))" />
+    <Navigation :onNext="next" :disableNext="disableNextButton" />
   </div>
 </template>
 
@@ -65,6 +65,19 @@ export default {
       credential: existingCredential || credentialTemplate,
     };
   },
+  computed: {
+    disableNextButton() {
+      if(this.credential.type === 'token') {
+        return !this.credential.token;
+      }
+      else if(this.credential.type === 'user') {
+        return !this.credential.username || !this.credential.password;
+      }
+      else {
+        return false;
+      }
+    }
+  },
   methods: {
     next() {
       if (this.credential.type === 'user') {
@@ -74,6 +87,9 @@ export default {
         delete this.credential.username;
         delete this.credential.password;
         this.$store.dispatch('saveCredential', this.credential);
+      } else {
+        // must be 'none'
+        this.$store.state.ui.create({'redirect': 'config'});
       }
     },
   },
